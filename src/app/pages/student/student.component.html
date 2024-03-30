@@ -1,0 +1,100 @@
+<header>
+    <mat-toolbar color="primary">
+      <h1 class="text-3xl font-bold">PeopleHub</h1>
+    </mat-toolbar>
+    
+  </header>
+  <main class="container mx-auto p-5">
+    <div class="text-right mb-5">
+      <button 
+        mat-flat-button class="bg-[#10a37f] !rounded-[30px] !ml-auto min-h-10" 
+        (click)="openDialog()"
+        color="primary">
+        <mat-icon>person</mat-icon>
+        Add person
+      </button>
+    </div>
+    <div class="card-wrap bg-white rounded-2xl p-5">
+      <table width="100%" class="table-fixed">
+        <thead class="hidden ">
+          <tr>
+            <th>Avatar</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Age</th>
+            <th>Country</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table-row">
+            <td>
+              <div>
+                <span class="block avatar-skeleton"></span>
+              </div>
+            </td>
+            <td>
+              <div>
+                <span class="block text-[#637381] text-[13px] font-medium mb-1">Name</span>
+                <span class="block line-skeleton w-[70%]"></span>
+              </div>
+            </td>
+            <td>
+              <div>
+                <span class="block text-[#637381] text-[13px] font-medium mb-1">Email</span>
+                <span class="block line-skeleton w-[70%]"></span>
+              </div>
+            </td>
+            <td>
+              <div>
+                <span class="block text-[#637381] text-[13px] font-medium mb-1">Age</span>
+                <span class="block line-skeleton w-[40%]"></span>
+              </div>
+            </td>
+            <td>
+              <div>
+                <span class="block text-[#637381] text-[13px] font-medium mb-1">Country</span>
+                <span class="block line-skeleton w-[60%]"></span>
+              </div>
+            </td>
+          </tr>
+          <tr class="table-row">
+            <td>
+              <div>
+                <!-- <span class="block text-[#637381] text-[13px] font-medium mb-1">Avatar</span> -->
+                <img
+                  class="h-12 w-12 rounded-xl"
+                  src="https://demos.creative-tim.com/argon-dashboard/assets/img/team-2.jpg">
+              </div>
+            </td>
+            <td>
+              <div>
+                <span class="block text-[#637381] text-[13px] font-medium mb-1">Name</span>
+                <span class="block text-[#212B36] text-[15px] font-bold">Nasir</span>
+              </div>
+            </td>
+            <td>
+              <div>
+                <span class="block text-[#637381] text-[13px] font-medium mb-1">Email</span>
+                <span class="block text-[#212B36] text-[15px] font-bold">nasir&#64;example.com</span>
+              </div>
+            </td>
+            <td>
+              <div>
+                <span class="block text-[#637381] text-[13px] font-medium mb-1">Age</span>
+                <span class="block text-[#212B36] text-[15px] font-bold">30</span>
+              </div>
+            </td>
+            <td>
+              <div>
+                <span class="block text-[#637381] text-[13px] font-medium mb-1">Country</span>
+                <span class="block text-[#212B36] text-[15px] font-bold">India</span>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+  <footer>
+  
+  </footer>
