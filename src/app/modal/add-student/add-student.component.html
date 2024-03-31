@@ -1,4 +1,8 @@
+<button mat-button class="close-icon" (click)="closeDialog()">
+  <mat-icon>close</mat-icon>
+</button>
 <h2 mat-dialog-title class="mb-5">Add a new person</h2>
+
 <form [formGroup]="addStudent" (ngSubmit)="onSubmit()">
   <mat-dialog-content class="mat-typography">
     <div class="pt-5 -mb-8">
@@ -36,14 +40,15 @@
         </mat-form-field>
         <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
           <div *ngIf="f['email'].errors['required']">Email is required</div>
+          <div *ngIf="f['email'].errors['email']"> Email must be a valid email address</div>
         </div>
       </div>
       <div>
         <mat-form-field appearance="outline" class="w-full">
           <mat-label>Date of birth</mat-label>
-          <input matInput placeholder="Enter date of birth"  [matDatepicker]="picker" 
+          <input matInput placeholder="Enter date of birth"  [matDatepicker]="picker"  [max]="maxDate"
           [ngClass]="{ 'is-invalid': submitted && f['dateOfBirth'].errors }" formControlName="dateOfBirth" >
-          <mat-datepicker-toggle matIconSuffix [for]="picker" ></mat-datepicker-toggle>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"  ></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
         <div *ngIf="submitted && f['dateOfBirth'].errors" class="invalid-feedback">
@@ -58,6 +63,9 @@
           </mat-select>
           <mat-icon matPrefix>public</mat-icon>
         </mat-form-field>
+        <div *ngIf="submitted && f['country'].errors" class="invalid-feedback">
+          <div *ngIf="f['country'].errors['required']">Country is required</div>
+        </div>
       </div>
 
     </div>

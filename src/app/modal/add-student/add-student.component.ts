@@ -8,6 +8,7 @@ import {
   MatDialogContent,
   MatDialogActions,
   MatDialogClose,
+  MatDialogRef,
 } from '@angular/material/dialog';
 import { DomSanitizer } from '@angular/platform-browser';
 import {MatButtonModule} from '@angular/material/button';
@@ -58,11 +59,13 @@ export class AddStudentComponent {
   imagePreview: any = '//www.gravatar.com/avatar/c1c5f623b7590c4ecefaff5b9f78409a?s=150&r=pg&d=mm';
 
   country = countryList;
-  
+  maxDate = new Date();
+
   constructor(
     private formBuilder: FormBuilder,
     private apiService: ApiService,
     public sanitizer: DomSanitizer,
+    public dialogRef: MatDialogRef<AddStudentComponent>,
     ) {
 
   }
@@ -77,6 +80,7 @@ export class AddStudentComponent {
         Validators.required,
         Validators.maxLength(80),
         Validators.email,
+        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
       ])),
       dateOfBirth: new FormControl(null, Validators.compose([
         Validators.required,
@@ -108,6 +112,11 @@ export class AddStudentComponent {
 
   }
 
+
+  closeDialog(){
+    this.dialogRef.close({ event:'Cancel' });
+  }
+
   onSubmit() {
 
     this.submitted = true;
@@ -125,14 +134,15 @@ export class AddStudentComponent {
       avatar: this.f['avatar'].value,
     };
 
-    console.log(parameter);
+    this.dialogRef.close({
+      event: 'added',
+      data: parameter
+    });
 
-    this.apiService.addStudent(parameter)
+    /* this.apiService.addStudent(parameter)
       .subscribe(res => {
-
         console.log(res);
-
-      });
+      }); */
 
   }
 
