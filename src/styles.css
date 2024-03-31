@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 
+
 html, body { height: 100%; }
 body {
     font-family: "DM Sans", sans-serif;
@@ -11,11 +12,12 @@ body {
     font-style: normal;
 }
 
+
 .card-wrap {
     box-shadow: 0 0 2rem 0 rgba(136,152,170,.15);
 }
 
-button.mat-primary {
+.add-person-.mat-primary {
     --mdc-filled-button-container-color: #10a37f !important;
 }
 
@@ -29,6 +31,11 @@ td {
     position: relative;
     padding: 16px;
     overflow-wrap: break-word;
+}
+
+.mdc-notched-outline__notch
+{
+  border-right: none;
 }
 
   .avatar-skeleton {
@@ -68,3 +75,5 @@ td {
       background-position: 208px;
     }
   }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
