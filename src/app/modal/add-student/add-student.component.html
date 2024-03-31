@@ -23,7 +23,7 @@
       <div>
         <mat-form-field appearance="outline" class="w-full">
           <mat-label>Name</mat-label>
-          <input matInput placeholder="Enter name" [ngClass]="{ 'is-invalid': submitted && f['name'].errors }"
+          <input matInput placeholder="Enter name" class="capitalize" [ngClass]="{ 'is-invalid': submitted && f['name'].errors }"
             formControlName="name" maxlength="80">
           <mat-icon matPrefix>person_outline</mat-icon>
         </mat-form-field>
