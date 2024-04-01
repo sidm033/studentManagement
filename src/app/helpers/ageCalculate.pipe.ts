@@ -7,8 +7,8 @@ import moment from 'moment';
   name: 'ageCalculate'
 })
 export class AgeCalculate implements PipeTransform {
-  transform(value: string): number {
-    const getAge = moment(value).fromNow().split(' ')[0];
-    return Number(getAge);
+  transform(value: string): string {
+    const getAge = moment(value).fromNow().split(' ');
+    return `${getAge[0]} ${getAge[1]}`;
   }
 }
