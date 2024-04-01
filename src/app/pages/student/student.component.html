@@ -1,101 +1,81 @@
 <header>
   <mat-toolbar color="primary">
-    <h1 class="text-3xl font-bold">PeopleHub</h1>
+    <h1 class="text-3xl font-bold">Student management</h1>
   </mat-toolbar>
 </header>
 <main class="container mx-auto p-5">
-  <div class="text-right mb-5">
+  <div class="flex flex-row items-center mb-5">
+    <h1 class="text-[#212B36] text-[20px] font-bold">
+      Students list
+    </h1>
     <button mat-flat-button
       class="flex flex-row items-center justify-center gap-x-1.5 bg-[#10a37f] !rounded-[30px] ml-auto min-h-[50px] min-w-[150px] !text-white add-person-cta"
       (click)="openDialog()" color="primary">
       <mat-icon>person</mat-icon>
-      Add person
+      Add Student
     </button>
   </div>
-  <div class="card-wrap bg-white rounded-2xl p-5">
-    <table width="100%" class="table-fixed">
-      <thead class="hidden ">
-        <tr>
-          <th>Avatar</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Age</th>
-          <th>Country</th>
-        </tr>
-      </thead>
+  <div class="card-wrap bg-white rounded-2xl p-5 min-h-[400px] flex items-center justify-center">
+    
+  
+    <!-- List Item::Person Table -->
+    <table width="100%" class="table-fixed" *ngIf="studentList.length !== 0; else noRecordFound">
       <tbody>
-        <!-- <tr class="table-row">
+        <tr class="table-row" *ngFor="let item of studentList">
           <td>
             <div>
-              <span class="block avatar-skeleton"></span>
+              <img class="h-12 w-12 rounded-xl"
+                [src]="item.avatar">
             </div>
           </td>
           <td>
             <div>
               <span class="block text-[#637381] text-[13px] font-medium mb-1">Name</span>
-              <span class="block line-skeleton w-[70%]"></span>
+              <span class="block text-[#212B36] text-[15px] font-bold max-w-[200px]">
+                {{item.name}}
+            </span>
             </div>
           </td>
           <td>
             <div>
               <span class="block text-[#637381] text-[13px] font-medium mb-1">Email</span>
-              <span class="block line-skeleton w-[70%]"></span>
+              <span class="block text-[#212B36] text-[15px] font-bold max-w-[200px]">
+                {{item.email}}
+              </span>
             </div>
           </td>
           <td>
             <div>
               <span class="block text-[#637381] text-[13px] font-medium mb-1">Age</span>
-              <span class="block line-skeleton w-[40%]"></span>
+              <span class="block text-[#212B36] text-[15px] font-bold  max-w-[80px]">
+                {{item.dob | ageCalculate }} 
+              </span>
             </div>
           </td>
           <td>
             <div>
               <span class="block text-[#637381] text-[13px] font-medium mb-1">Country</span>
-              <span class="block line-skeleton w-[60%]"></span>
+              <span class="block text-[#212B36] text-[15px] font-bold max-w-[200px]">
+                {{item.country | countryName}}
+              </span>
             </div>
           </td>
-        </tr> -->
-
-          <tr class="table-row" *ngFor="let item of studentList">
-            <td>
-              <div>
-                <img class="h-12 w-12 rounded-xl"
-                  [src]="item.avatar">
-              </div>
-            </td>
-            <td>
-              <div>
-                <span class="block text-[#637381] text-[13px] font-medium mb-1">Name</span>
-                <span class="block text-[#212B36] text-[15px] font-bold">{{item.name}}</span>
-              </div>
-            </td>
-            <td>
-              <div>
-                <span class="block text-[#637381] text-[13px] font-medium mb-1">Email</span>
-                <span class="block text-[#212B36] text-[15px] font-bold">{{item.email}}</span>
-              </div>
-            </td>
-            <td>
-              <div>
-                <span class="block text-[#637381] text-[13px] font-medium mb-1">Age</span>
-                <span class="block text-[#212B36] text-[15px] font-bold">{{item.dob | ageCalculate }} </span>
-              </div>
-            </td>
-            <td>
-              <div>
-                <span class="block text-[#637381] text-[13px] font-medium mb-1">Country</span>
-                <span class="block text-[#212B36] text-[15px] font-bold">{{item.country | countryName}}</span>
-              </div>
-            </td>
-          </tr>
-
+        </tr>
       </tbody>
     </table>
-    <mat-paginator #paginator class="mt-8" (page)="handlePageEvent($event)" [length]="length" [pageSize]="pageSize"
-      [disabled]="disabled" [showFirstLastButtons]="showFirstLastButtons"
-      [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []" [hidePageSize]="hidePageSize"
-      [pageIndex]="pageIndex" aria-label="Select page">
-    </mat-paginator>
+
+    <!--... List Item::Person Table -->
+
+    <!-- No record::Person Table -->
+    <ng-template #noRecordFound>
+      <div class="text-center" >
+        <img class="mx-auto" src="assets/images/no-record-found.png" />
+        <p class="text-[#212B36] text-[20px] font-bold mt-5">
+          No record found
+        </p>
+      </div>
+    </ng-template>
+
   </div>
 </main>
 <footer>

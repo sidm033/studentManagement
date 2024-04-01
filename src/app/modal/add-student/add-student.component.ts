@@ -18,7 +18,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatSelectModule} from '@angular/material/select';
 import {provideNativeDateAdapter} from '@angular/material/core';
-import { CommonModule } from '@angular/common';
+import { AsyncPipe, CommonModule } from '@angular/common';
 import moment from 'moment';
 
 import { ApiService } from '../../service/api.service';
@@ -43,6 +43,7 @@ import { countryList } from './data';
     MatDatepickerModule,
     MatSelectModule,
     HttpClientModule,
+    AsyncPipe,
   ],
   providers: [ApiService, provideNativeDateAdapter()],
   templateUrl: './add-student.component.html',
@@ -63,11 +64,11 @@ export class AddStudentComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private apiService: ApiService,
+    // private apiService: ApiService,
     public sanitizer: DomSanitizer,
     public dialogRef: MatDialogRef<AddStudentComponent>,
     ) {
-
+     
   }
 
   ngOnInit(): void {

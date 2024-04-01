@@ -1,21 +1,27 @@
-<button mat-button class="close-icon" (click)="closeDialog()">
-  <mat-icon>close</mat-icon>
-</button>
-<h2 mat-dialog-title class="mb-5">Add a new person</h2>
+<div class="flex items-center pl-6 pr-5 py-2">
+  <h2 class="text-[20px] text-[#212B36] font-medium">Add Student</h2>
+    <button mat-icon-button 
+      aria-label="Close Dialog"
+      class="ml-auto" (click)="closeDialog()">
+      <mat-icon>close</mat-icon>
+    </button>
+</div>
 
 <form [formGroup]="addStudent" (ngSubmit)="onSubmit()">
   <mat-dialog-content class="mat-typography">
-    <div class="pt-5 -mb-8">
+    <div class="-mt-5">
 
       <div class="col-md-3">
         <div class="col-md-12 mb-4 text-center">
           <div class="avatar-box">
             <img [src]="sanitizer.bypassSecurityTrustUrl(imagePreview)"
-              class="border rounded border-radius-50p image-cover width-100  height-100" alt="...">
-            <div class="file-input">
-              <input type="file" id="file" (change)="onFileChange($event)" />
-              <label for="file">Choose a file</label>
-            </div>
+              class="border rounded-xl image-cover w-[80px] h-[80px] mb-5 mx-auto" alt="...">
+              <div class="relative overflow-hidden inline-block">
+                <button type="button" class="text-[#212121] text-[15px] bg-white px-[22px] py-[8px] rounded-lg border border-solid border-[#e5e7eb] h-[40px]">Upload avatar</button>
+                <input 
+                class="absolute  left-0 top-0 opacity-0 h-[40px]"
+                  type="file" name="myfile" id="file" (change)="onFileChange($event)" />
+              </div>
           </div>
         </div>
       </div>
@@ -23,11 +29,12 @@
       <div>
         <mat-form-field appearance="outline" class="w-full">
           <mat-label>Name</mat-label>
-          <input matInput placeholder="Enter name" class="capitalize" [ngClass]="{ 'is-invalid': submitted && f['name'].errors }"
+          <input matInput placeholder="Enter name" class="capitalize"
+           [ngClass]="{ 'is-invalid': submitted && f['name'].errors }"
             formControlName="name" maxlength="80">
-          <mat-icon matPrefix>person_outline</mat-icon>
+          <mat-icon matSuffix>person_outline</mat-icon>
         </mat-form-field>
-        <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+        <div *ngIf="submitted && f['name'].errors" class="invalid-feedback text-red-500 mb-4 -mt-3">
           <div *ngIf="f['name'].errors?.['required']">Name is required</div>
         </div>
       </div>
@@ -36,13 +43,14 @@
           <mat-label>Email</mat-label>
           <input matInput placeholder="Enter email" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }"
             formControlName="email" maxlength="80" >
-          <mat-icon matPrefix>mail_outline</mat-icon>
+          <mat-icon matSuffix>mail_outline</mat-icon>
         </mat-form-field>
-        <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+        <div *ngIf="submitted && f['email'].errors" class="invalid-feedback text-red-500 mb-4 -mt-3">
           <div *ngIf="f['email'].errors['required']">Email is required</div>
           <div *ngIf="f['email'].errors['email']"> Email must be a valid email address</div>
         </div>
       </div>
+
       <div>
         <mat-form-field appearance="outline" class="w-full">
           <mat-label>Date of birth</mat-label>
@@ -51,19 +59,20 @@
           <mat-datepicker-toggle matIconSuffix [for]="picker"  ></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
-        <div *ngIf="submitted && f['dateOfBirth'].errors" class="invalid-feedback">
-          <div *ngIf="f['dateOfBirth'].errors['required']">Date Of birth is required</div>
+        <div *ngIf="submitted && f['dateOfBirth'].errors" class="invalid-feedback text-red-500 mb-4 -mt-3">
+          <div *ngIf="f['dateOfBirth'].errors['required']">Date of birth is required</div>
         </div>
       </div>
+
       <div>
         <mat-form-field appearance="outline" class="w-full">
           <mat-label>Country</mat-label>
           <mat-select [ngClass]="{ 'is-invalid': submitted && f['dateOfBirth'].errors }" formControlName="country">
             <mat-option *ngFor="let item of country" [value]="item.code">{{item.name}}</mat-option>
           </mat-select>
-          <mat-icon matPrefix>public</mat-icon>
+          <mat-icon matSuffix>public</mat-icon>
         </mat-form-field>
-        <div *ngIf="submitted && f['country'].errors" class="invalid-feedback">
+        <div *ngIf="submitted && f['country'].errors" class="invalid-feedback text-red-500 mb-4 -mt-3">
           <div *ngIf="f['country'].errors['required']">Country is required</div>
         </div>
       </div>
@@ -71,10 +80,10 @@
     </div>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button type="submit" mat-flat-button
+    <button type="submit" mat-flat-button [disabled]="addStudent.invalid"
       class="flex flex-row items-center justify-center gap-x-1.5 !rounded-md min-h-[50px] min-w-full w-full !text-white mb-5 mx-4"
       color="primary">
-      Add person
+      Submit
     </button>
   </mat-dialog-actions>
 </form>

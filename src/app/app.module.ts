@@ -5,7 +5,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { ApiService } from './service/api.service';
 import { StudentComponent } from './pages/student/student.component';
 import { AppRoutingModule } from './app.routes';
 import { AddStudentComponent } from './modal/add-student/add-student.component';
@@ -29,7 +28,6 @@ import { AddStudentComponent } from './modal/add-student/add-student.component';
     BrowserModule,
     AppRoutingModule,
   ],
-  // providers: [ApiService],
   bootstrap: [AppComponent],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
